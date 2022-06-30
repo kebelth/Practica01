@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Capitales</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <header th:replace="layout/plantilla  :: header"/>
+        
+        <h2>Capitales del Mundo</h2>
+        <a th:href="@{/nuevaCapital}">Nueva Capital</a>
+        <div th:if="${capital != null and !capital.empty}">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Capital</th>
+                        <th>País</th>
+                        <th>Población</th>
+                        <th>Playa</th>
+                        <th>Extensión</th>
+                        <th>Eliminar</th>
+                        <th>Modificar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="capital : ${capital}">
+                        <td th:text="${capital.nombre}"></td>
+                        <td th:text="${capital.pais}"></td>
+                        <td th:text="${capital.poblacion}"></td>
+                        <td th:text="${capital.playa}"></td>
+                        <td th:text="${capital.extension}"></td>
+                        <td><a th:href="@{/eliminarCapital/} + ${capital.idCapital}">Eliminar</a></td>
+                        <td><a th:href="@{/modificarCapital/} + ${capital.idCapital}">Modificar</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div th:if="${capital == null or capital.empty}">
+            No tenemos clientes que mostrar...
+        </div>
+        <header th:replace="layout/plantilla  :: footer"/>
+    </body>
+</html>

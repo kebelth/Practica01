@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Capitales</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        
+        <header th:replace="layout/plantilla  :: header"/>
+        
+        <h2>Datos de la Capital</h2>
+        <a th:href="@{/}">Regresar</a>
+        <br/>
+       <form th:action="@{/guardarCapital}" 
+              method="post"@
+              th:object="${capital}">
+            <input type="hidden" name="idCapital" th:field="*{idCapital}"/>
+            
+            <label for="nombre">Capital</label>
+            <input type="text" name="nombre" th:file="*{nombre}"/>
+            <br/>
+            <label for="pais">País</label>
+            <input type="text" name="pais" th:file="*{pais}"/>
+            <br/>
+            <label for="poblacion">Población</label>
+            <input type="number" name="poblacion" th:file="*{poblacion}"/>
+            <br/>
+            <label for="playa">Playa</label>
+            <input type="text" name="playa" th:file="*{playa}"/>
+            <br/>
+            <label for="extension">Extensión</label>
+            <input type="number" name="extension" th:file="*{extension}"/>
+            <br/>
+            <input type="submit" name="guardar" value="Guardar"/>
+        </form>
+        
+        <header th:replace="layout/plantilla  :: footer"/>
+    </body>
+</html>
